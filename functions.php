@@ -55,3 +55,9 @@ function sumArray(array $numbers) {
 echo maxNumber($numbers) . '<br>';
 
 echo 'Сумма массива: ' . sumArray($numbers) . '<br>';
+
+function dump($var) {
+    echo '<pre>';
+    var_dump($var);
+    echo '<pre>';
+}
