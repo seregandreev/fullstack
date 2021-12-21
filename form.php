@@ -11,15 +11,28 @@ $login = $_POST['login'];
 $password = $_POST['password'];
 $city_id = $_POST['city_id'];
 
-$query = "INSERT INTO `users` (`name`, `login`, `password`, `city_id`) VALUES(:name, :login, :password, :city_id)";
-$res = $pdo->prepare($query);
+$query = "SELECT * FROM `users`";
+$res = $pdo->query($query);
+$users = $res->fetchAll();
 
-$res->execute([
-    ':name' => $name,
-    ':login' => $login,
-    ':password' => $password,
-    ':city_id' => $city_id,
-]);
+foreach ($users as $user) {
+    if ($user['login'] != $login) {
+        $query = "INSERT INTO `users` (`name`, `login`, `password`, `city_id`) VALUES(:name, :login, :password, :city_id)";
+        $res = $pdo->prepare($query);
 
-header('Location: index.php');
+        $res->execute([
+            ':name' => $name,
+            ':login' => $login,
+            ':password' => $password,
+            ':city_id' => $city_id,
+        ]);
+
+        header('Location: index.php');
+    } else {
+        echo '<script>alert("Укажите другой логин");</script>';
+
+        //header('Location: index.php');
+    }
+}
+
 
