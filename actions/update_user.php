@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 $user='root';
 $password='';
@@ -22,6 +23,7 @@ $status = $res->execute([
 if (!$status) {
     $error = $res->errorInfo()[2];
     $_SESSION['error'] = $error;
-}
+} else $_SESSION['success'] = "Пользователь успешно изменен!";
+
 
 header("Location: ../pages/user.php?id=$userId");

@@ -53,8 +53,15 @@ if (isset($_SESSION['error'])) {
     </div>
     ";
     unset($_SESSION['error']);
+} elseif (isset($_SESSION['success'])) {
+    echo 
+    "
+    <div class='alert alert-success text-center' role='alert'>
+        {$_SESSION['success']}
+    </div>
+    ";
+    unset($_SESSION['success']);
 }
-
 ?>
 
         <form method="post" action="../actions/update_user.php">
