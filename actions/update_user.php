@@ -9,15 +9,15 @@ $pdo->query("SET NAMES 'utf8'");
 $userId = $_POST['id'];
 $name = $_POST['name'];
 $login = $_POST['login'];
-$city_id = $_POST['city_id'];
+$cityId = $_POST['city_id'];
 
-$query = "UPDATE users SET name = :name, login = :login, city_id = :city_id WHERE id = :id";
+$query = "UPDATE users SET name = :name, login = :login, city_id = :cityId WHERE id = :id";
 $res = $pdo->prepare($query);
 $status = $res->execute([
     ':id' => $userId,
     ':login' => $login,
     ':name' => $name,
-    ':city_id' => $city_id
+    ':cityId' => $cityId
 ]);
 
 if (!$status) {

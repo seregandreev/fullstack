@@ -15,8 +15,6 @@ $query = "SELECT * FROM `users`";
 $res = $pdo->query($query);
 $users = $res->fetchAll();
 
-foreach ($users as $user) {
-    if ($user['login'] != $login) {
         $query = "INSERT INTO `users` (`name`, `login`, `password`, `city_id`) VALUES(:name, :login, :password, :city_id)";
         $res = $pdo->prepare($query);
 
@@ -28,11 +26,4 @@ foreach ($users as $user) {
         ]);
 
         header('Location: index.php');
-    } else {
-        echo '<script>alert("Укажите другой логин");</script>';
-
-        //header('Location: index.php');
-    }
-}
-
 
